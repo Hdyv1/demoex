@@ -19,28 +19,28 @@
                                 @csrf
                                 <div class="col-12 mb-3">
                                     <label for="fullname" class="form-label">Полное имя</label>
-                                    <input type="text" class="form-control" placeholder="fullname" name="fullname" />
+                                    <input type="text" class="form-control" placeholder="fullname" name="fullname" value="{{ old('fullname') }}" />
                                     @error('fullname')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="col-12 mb-3">
                                     <label for="username" class="form-label">Имя Пользователя</label>
-                                    <input type="text" class="form-control" placeholder="userName" name="username" />
+                                    <input type="text" class="form-control" placeholder="userName" name="username" value="{{ old('username') }}"/>
                                     @error('username')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="col-12 mb-3">
                                     <label for="email" class="form-label">Email</label>
-                                    <input type="text" class="form-control" placeholder="Email" name="email" />
+                                    <input type="text" class="form-control" placeholder="Email" name="email" value="{{ old('email') }}"/>
                                     @error('email')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="col-12 mb-3">
                                     <label for="phonenumber" class="form-label">Номер телефона</label>
-                                    <input type="text" class="form-control" placeholder="phoneNumber" name="phonenumber" />
+                                    <input type="text" class="form-control" placeholder="phoneNumber" name="phonenumber" value="{{ old('phonenumber') }}"/>
                                     @error('phonenumber')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror

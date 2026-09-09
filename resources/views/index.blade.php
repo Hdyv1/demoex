@@ -19,7 +19,7 @@
                                 @csrf
                                 <div class="col-12 mb-3">
                                     <label for="username" class="form-label">Имя Пользователя</label>
-                                    <input type="text" class="form-control" placeholder="username" name="username" />
+                                    <input type="text" class="form-control" placeholder="username" name="username" value="{{ old('username') }}"/>
                                     @error('username')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
