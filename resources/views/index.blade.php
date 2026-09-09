@@ -5,9 +5,6 @@
 <x-head />
 
 <body>
-    @if (Auth::user())
-    <x-header />
-    @endif
 
     <div class="container">
         <div class="row">

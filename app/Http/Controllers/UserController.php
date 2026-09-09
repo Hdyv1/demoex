@@ -23,7 +23,7 @@ class UserController extends Controller
     {
         $user = User::create($request->all());
         Auth::login($user);
-        return redirect()->route('index');
+        return redirect()->route('order');
         // return response()->json(['token'=>$user->createToken('api')->plainTextToken])->redirect()->route('index');
     }
 
@@ -33,7 +33,7 @@ class UserController extends Controller
         if ($user) {
             if (Hash::check($request->password, $user->password)) {
                 Auth::login($user);
-                return back();
+                return redirect()->route('order');
             }
         }
         return back()->withErrors([
@@ -45,5 +45,14 @@ class UserController extends Controller
     {
         Auth::logout();
         return redirect()->route('index');
+    }
+
+    public function order()
+    {
+        return view('createOrder');
+    }
+    public function orders()
+    {
+        return view('orders');
     }
 }
