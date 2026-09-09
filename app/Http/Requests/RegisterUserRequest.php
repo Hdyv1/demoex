@@ -24,10 +24,10 @@ class RegisterUserRequest extends FormRequest
     {
         return [
             'fullname'=>'required',
-            'username'=>'required',
+            'username'=>'required|unique:users',
             'password'=>'required',
-            'phonenumber'=>'required',
-            'email'=>'required,email',
+            'phonenumber'=>'required|unique:users',
+            'email'=>'required|email|unique:users',
         ];
     }
 }

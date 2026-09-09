@@ -1,19 +1,51 @@
-<x-head/>
+<!DOCTYPE html>
+<html lang="en">
+
+</html>
+<x-head />
+
 <body>
-    <x-header/>
+    @if (Auth::user())
+    <x-header />
+    @endif
+
     <div class="container">
-        <div class="row d-flex justify-content-center">
-            <div class="col-12 text-center mb-5">
-                <h2>
-                    Кнопки мега
-                </h2>
+        <div class="row">
+            <div class="col-12 d-flex justify-content-center">
+                <div class="authForm">
+                    <div class="container">
+                        <div class="row">
+                            <form action="{{ route('auth') }}" method="post">
+                                @csrf
+                                <div class="col-12 mb-3">
+                                    <label for="username" class="form-label">Имя Пользователя</label>
+                                    <input type="text" class="form-control" placeholder="username" name="username" />
+                                    @error('username')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <label for="password" class="form-label">Пароль</label>
+                                    <input type="text" class="form-control" placeholder="password" name="password" />
+                                    @error('password')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-primary">Авторизоваться</button>
+                                </div>
+                                <div class="col-12">
+                                    Ещё нет аккаунта? <a href="{{ route('registerForm') }}">Зарегистрироваться</a>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="col-3"><button class="btn btn-primary">1</button></div>
-            <div class="col-3"><button class="btn btn-primary">2</button></div>
-            <div class="col-3"><button class="btn btn-primary">3</button></div>
         </div>
     </div>
-    <x-scripts/>
+    <x-scripts />
 </body>
 
 </html>
