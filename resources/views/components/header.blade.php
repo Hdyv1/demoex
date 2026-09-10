@@ -12,7 +12,7 @@
 
             @if (Auth::user()->role=='admin')
             <div class="col-4">
-                Панель администратора
+                <a href="{{ route('admin') }}">Панель администратора</a>
             </div>
             @endif
             <div class="col-12">

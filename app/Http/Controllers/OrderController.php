@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\Place;
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
 use Illuminate\Support\Facades\Auth;
@@ -27,7 +28,14 @@ class OrderController extends Controller
      */
     public function store(StoreOrderRequest $request)
     {
-        //
+        $order = new Order();
+        $order->user_id = auth::user()->id;
+        // $order->place = Place::where('id', $request->place)->first();
+        $order->place_id = $request->place;
+        $order->date = $request->date;
+        $order->payMethod = $request->payMethod;
+        $order->save();
+        return redirect()->route('orders');
     }
 
     /**

@@ -8,6 +8,8 @@ use App\Http\Requests\AuthUserRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use App\Models\Place;
+use App\Models\Order;
 
 class UserController extends Controller
 {
@@ -49,10 +51,19 @@ class UserController extends Controller
 
     public function order()
     {
-        return view('createOrder');
+        $places = Place::all();
+        return view('createOrder', compact('places'));
     }
     public function orders()
     {
-        return view('orders');
+        $orders = Order::where('user_id', auth::user()->id)->with('place')->get();
+        return view('orders', compact('orders'));
+    }
+    public function admin()
+    {
+        if(auth::user()->role=='admin'){
+            return view('adminPage');
+        }
+        return back();
     }
 }

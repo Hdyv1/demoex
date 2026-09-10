@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Place;
 use App\Http\Requests\StorePlaceRequest;
 use App\Http\Requests\UpdatePlaceRequest;
+use Illuminate\Support\Facades\Storage;
 
 class PlaceController extends Controller
 {
@@ -29,7 +30,13 @@ class PlaceController extends Controller
      */
     public function store(StorePlaceRequest $request)
     {
-        //
+        // $place = Place::create($request->only(['title', 'description']));
+        $place = new Place();
+        $place->title = $request->title;
+        $place->description = $request->description;
+        $place->image = 'storage/images/' . Storage::disk('images')->put('/', $request->file('image'));
+        $place->save();
+        return back();
     }
 
     /**
