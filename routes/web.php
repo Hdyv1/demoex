@@ -14,6 +14,7 @@ Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 Route::get('/admin', [UserController::class, 'admin'])->name('admin');
 Route::get('/order', [UserController::class, 'order'])->name('order');
 Route::post('/createOrder', [OrderController::class, 'store'])->name('createOrder');
+Route::post('/updateOrder/{order}', [OrderController::class, 'update'])->name('updateOrder');
 Route::get('/orders', [UserController::class, 'orders'])->name('orders');
 
 Route::post('/createPlace', [PlaceController::class, 'store'])->name('createPlace');

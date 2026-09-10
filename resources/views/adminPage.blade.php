@@ -35,42 +35,30 @@
             </div>
             <div class="col-lg-6 col-sm-12">
                 <h3 class="mb-lg-5 mb-sm-3">Все заявки</h3>
+                @foreach ($orders as $order)
                 <div class="order-form mb-3">
                     <div class="order-user">
-                        <span>name</span>
-                        <span>data</span>
+                        <span>{{ $order->user->name }}</span>
+                        <span>{{ $order->date }}</span>
                     </div>
-                    <span>Название места</span>
+                    <span>{{ $order->place->title }}</span>
                     <div class="order-status d-flex justify-content-between">
-                        <span>Статус заявки: </span>
-                        Новый
+                        <form action="{{ route('updateOrder', $order->id) }}" method="post">
+                            @csrf
+                            <div>
+                                <span>Статус заявки: </span>
+                                <button type="submit" class="btn btn-primary">Обновить</button>
+                            </div>
+                            <select class="form-select">
+                                <option value="new" {{ $order->status=='new' ? 'selected' : '' }}>Новая</option>
+                                <option value="created" {{ $order->status=='created' ? 'selected' : '' }}>Создана</option>
+                                <option value="completed" {{ $order->status=='completed' ? 'selected' : '' }}>Выполнена</option>
+                            </select>
+                        </form>
                     </div>
-                    
                 </div>
-                <div class="order-form mb-3">
-                    <div class="order-user">
-                        <span>name</span>
-                        <span>data</span>
-                    </div>
-                    <span>Название места</span>
-                    <div class="order-status d-flex justify-content-between">
-                        <span>Статус заявки: </span>
-                        Новый
-                    </div>
-                    
-                </div>
-                <div class="order-form mb-3">
-                    <div class="order-user">
-                        <span>name</span>
-                        <span>data</span>
-                    </div>
-                    <span>Название места</span>
-                    <div class="order-status d-flex justify-content-between">
-                        <span>Статус заявки: </span>
-                        Новый
-                    </div>
-                    
-                </div>
+                @endforeach
+
             </div>
         </div>
         <div class="row">

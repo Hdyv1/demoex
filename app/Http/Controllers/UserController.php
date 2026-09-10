@@ -62,7 +62,8 @@ class UserController extends Controller
     public function admin()
     {
         if(auth::user()->role=='admin'){
-            return view('adminPage');
+            $orders = Order::with(['place', 'user'])->get();
+            return view('adminPage', compact('orders'));
         }
         return back();
     }
