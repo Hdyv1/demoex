@@ -5,6 +5,27 @@
 <x-head />
 
 <body>
+    @auth
+    <x-header/>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h3 class="text-center">Доступные места для конференций</h3>
+                <div class="container">
+                    <div class="row">
+                        @foreach ($places as $place)
+                        <div class="col-lg-6 col-sm-12 d-flex flex-column">
+                            <img src="{{ asset($place->image) }}" width="70%" alt="">
+                            <h4>{{$place->title}}</h4>
+                            <p>{{ $place->description }}</p>
+                        </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @else
     <div class="container">
         <div class="row">
             <div class="col-12 d-flex justify-content-center">
@@ -41,6 +62,7 @@
             </div>
         </div>
     </div>
+    @endauth
     <x-scripts />
 </body>
 

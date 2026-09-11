@@ -15,8 +15,10 @@ class UserController extends Controller
 {
     public function index()
     {
-        return view('index');
+        $places = Place::all();
+        return view('index', compact('places'));
     }
+
     public function registerForm()
     {
         return view('registerPage');
@@ -35,7 +37,7 @@ class UserController extends Controller
         if ($user) {
             if (Hash::check($request->password, $user->password)) {
                 Auth::login($user);
-                return redirect()->route('order');
+                return back();
             }
         }
         return back()->withErrors([
