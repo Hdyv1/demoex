@@ -6,7 +6,7 @@
     <x-header class="mb-5" />
     <h2 class="text-center">Просмотр заявок</h2>
     <div class="container">
-        <div class="row">
+        <div class="row form-cont">
             @isset($orders)
             @foreach ($orders as $order)
             <div class="col-12 form-control mb-3 p-3">
@@ -22,6 +22,9 @@
                 <form action="{{ route('createComment', $order->id) }}" method="post">
                     <textarea placeholder="Здесь вы можете оставить отзыв" class="form-control mb-3" name="content"></textarea>
                     <button type="submit" class="btn btn-primary">Отправить</button>
+                    @error('content')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                 </form>
                 @isset($order->comments)
                 <div class="container">
@@ -47,11 +50,13 @@
 
             </div>
             @endforeach
+            @else
+            <h2 class="text-center">У вас еще нет ниодной заявки</h2>
             @endisset
         </div>
     </div>
 
-
+    <x-footer class="fixed-bottom"/>
     <x-scripts />
 </body>
 

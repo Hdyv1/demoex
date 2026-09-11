@@ -6,7 +6,7 @@
     <x-header class="mb-5" />
     <h2 class="text-center mb-3">Создание заявки</h2>
     <div class="container">
-        <div class="row">
+        <div class="row authForm">
             <div class="col-12 form-control p-3">
                 <form action="{{ route('createOrder') }}" method="post">
                     @csrf
@@ -52,6 +52,7 @@
             </div>
         </div>
     </div>
+    <x-footer class="fixed-bottom"/>
     <x-scripts />
 </body>
 
