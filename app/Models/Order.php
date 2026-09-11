@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     protected $fillable = [
-      'payMethod', 'date', 'place_id',  
+      'payMethod', 'date', 'status', 
     ];
 
     public function place(){
@@ -15,5 +15,8 @@ class Order extends Model
     }
     public function user(){
       return $this->belongsTo(User::class);
+    }
+    public function comments(){
+      return $this->hasMany(Comment::class);
     }
 }

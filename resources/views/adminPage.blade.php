@@ -36,25 +36,35 @@
             <div class="col-lg-6 col-sm-12">
                 <h3 class="mb-lg-5 mb-sm-3">Все заявки</h3>
                 @foreach ($orders as $order)
-                <div class="order-form mb-3">
+                <div class="order-form mb-3 form-control p-3">
                     <div class="order-user">
-                        <span>{{ $order->user->name }}</span>
-                        <span>{{ $order->date }}</span>
+                        <span>{{ $order->user->fullname }} ({{ $order->date }})</span>
                     </div>
-                    <span>{{ $order->place->title }}</span>
+                    место: <span class="badge bg-secondary">{{ $order->place->title }}</span>
                     <div class="order-status d-flex justify-content-between">
                         <form action="{{ route('updateOrder', $order->id) }}" method="post">
                             @csrf
-                            <div>
+                            <div class="mb-3">
                                 <span>Статус заявки: </span>
-                                <button type="submit" class="btn btn-primary">Обновить</button>
+                                <select class="form-select" name="status">
+                                    <option value="new" {{ $order->status=='new' ? 'selected' : '' }}>Новое</option>
+                                    <option value="created" {{ $order->status=='created' ? 'selected' : '' }}>Создано</option>
+                                    <option value="done" {{ $order->status=='done' ? 'selected' : '' }}>Выполнено</option>
+                                </select>
+
                             </div>
-                            <select class="form-select">
-                                <option value="new" {{ $order->status=='new' ? 'selected' : '' }}>Новая</option>
-                                <option value="created" {{ $order->status=='created' ? 'selected' : '' }}>Создана</option>
-                                <option value="completed" {{ $order->status=='completed' ? 'selected' : '' }}>Выполнена</option>
-                            </select>
+                            <button type="submit" class="btn btn-primary">Обновить</button>
                         </form>
+
+
+                    </div>
+                    <div class="comments">
+                        <h4>Комментарии</h4>
+                        <textarea class="form-control" disabled>
+                            @foreach ($order->comments as $comment)
+                                {{$comment->user->fullname.': '. $comment->content}} ({{$comment->created_at}})
+                            @endforeach
+                        </textarea>
                     </div>
                 </div>
                 @endforeach

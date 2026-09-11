@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PlaceController;
@@ -18,3 +19,4 @@ Route::post('/updateOrder/{order}', [OrderController::class, 'update'])->name('u
 Route::get('/orders', [UserController::class, 'orders'])->name('orders');
 
 Route::post('/createPlace', [PlaceController::class, 'store'])->name('createPlace');
+Route::post('/createComment/{order}', [CommentController::class, 'store'])->name('createComment');

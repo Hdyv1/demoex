@@ -56,13 +56,13 @@ class UserController extends Controller
     }
     public function orders()
     {
-        $orders = Order::where('user_id', auth::user()->id)->with('place')->get();
+        $orders = Order::where('user_id', auth::user()->id)->with(['place', 'comments'])->get();
         return view('orders', compact('orders'));
     }
     public function admin()
     {
         if(auth::user()->role=='admin'){
-            $orders = Order::with(['place', 'user'])->get();
+            $orders = Order::with('place')->get();
             return view('adminPage', compact('orders'));
         }
         return back();
