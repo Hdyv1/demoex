@@ -25,8 +25,8 @@ class RegisterUserRequest extends FormRequest
         return [
             'fullname'=>'required|min:6',
             'username'=>'required|unique:users',
-            'password'=>'required',
-            'phonenumber'=>'required|unique:users',
+            'password'=>'required|min:8',
+            'phonenumber'=>'required|numeric|min:10|unique:users',
             'email'=>'required|email|unique:users',
         ];
     }

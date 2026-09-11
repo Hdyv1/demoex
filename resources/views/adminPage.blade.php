@@ -16,10 +16,16 @@
                             <div class="col-6">
                                 <label class="form-label" for="title">Название</label>
                                 <input class="form-control" name="title" placeholder="Название места">
+                                @error('title')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="col-6">
                                 <label class="form-label" for="image">Изображение</label>
                                 <input type="file" class="form-control" name="image">
+                                @error('image')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="col-6 mb-3">
                                 <label class="form-label" for="description">Описание</label>
