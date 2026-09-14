@@ -13,13 +13,13 @@
 
                 <div class="order">
                     <h5>Место - {{ $order->place->title }} ({{ $order->date }})</h5>
-                    <p>Способ Оплаты {{ $order->payMethod=='card'?'СБП':'Наличные' }}</p>
+                    <p>Способ Оплаты: {{ $order->payMethod=='card'?'СБП':'Наличные' }}</p>
                     <p>
                         Статус заявки: <span class="badge {{ $order->status=='new'?'text-bg-primary':($order->status=='created'?'text-bg-secondary':'text-bg-success') }}">{{ $order->status=='new'?'Новое':($order->status=='created'?'Создано':'Завершено') }}</span>
                     </p>
                 </div>
                 @if ($order->status=='done')
-                <form action="{{ route('createComment', $order->id) }}" method="post">
+                <form action="{{ route('createComment', $order->id) }}" method="post" class="mb-3">
                     <textarea placeholder="Здесь вы можете оставить отзыв" class="form-control mb-3" name="content"></textarea>
                     <button type="submit" class="btn btn-primary">Отправить</button>
                     @error('content')
@@ -33,8 +33,8 @@
                             <h4>Отзывы</h4>
                             @foreach ($order->comments as $comment)
                             <div class="form-control col-12 mb-3">
-                                <div class="comment-header d-flex align-items-center">
-                                    <h6>{{ $comment->user->fullname }}</h6> <span>{{$comment->created_at}}</span>
+                                <div class="comment-header d-flex align-items-center justify-content-between">
+                                    <h6>{{ $comment->user->fullname }}</h6> <span class="fw-light">{{$comment->created_at}}</span>
                                 </div>
 
                                 {{ $comment->content }}

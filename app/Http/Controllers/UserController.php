@@ -27,7 +27,7 @@ class UserController extends Controller
     {
         $user = User::create($request->all());
         Auth::login($user);
-        return redirect()->route('order');
+        return redirect()->route('index');
         // return response()->json(['token'=>$user->createToken('api')->plainTextToken])->redirect()->route('index');
     }
 
@@ -65,7 +65,8 @@ class UserController extends Controller
     {
         if(auth::user()->role=='admin'){
             $orders = Order::with('place')->get();
-            return view('adminPage', compact('orders'));
+            $places = Place::all();
+            return view('adminPage', compact(['orders', 'places']));
         }
         return back();
     }

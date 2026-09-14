@@ -14,6 +14,7 @@
                     <h3 class="text-center mb-5">Доступные места для конференций</h3>
                     <div class="container">
                         <div class="row">
+                            @if($places!='[]')
                             @foreach ($places as $place)
                             <div class="col-lg-6 col-sm-12 d-flex flex-column align-items-center">
                                 <div class="d-flex flex-column align-items-center align-items-lg-start">
@@ -24,6 +25,18 @@
 
                             </div>
                             @endforeach
+                            @else
+                            <section class="p-5 my-5">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <h3 class="text-center p-4">Администратор еще не добавил доступные места для конференций</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+
+                            @endif
                         </div>
                     </div>
                 </div>

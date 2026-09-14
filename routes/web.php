@@ -19,4 +19,6 @@ Route::post('/updateOrder/{order}', [OrderController::class, 'update'])->name('u
 Route::get('/orders', [UserController::class, 'orders'])->name('orders');
 
 Route::post('/createPlace', [PlaceController::class, 'store'])->name('createPlace');
+Route::post('/updatePlace{place}', [PlaceController::class, 'update'])->name('updatePlace');
+Route::get('/updatePlaceForm/{place}', [PlaceController::class, 'updatePlaceForm'])->name('updatePlaceForm');
 Route::post('/createComment/{order}', [CommentController::class, 'store'])->name('createComment');

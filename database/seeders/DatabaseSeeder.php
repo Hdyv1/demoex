@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
             'fullname' => 'admin',
             'email' => 'admin@admin',
             'phonenumber'=> '79123456789',
-            'username' => 'Conf77',
+            'username' => 'Conf2027',
             'password' => 'Demo77',
             'role' => 'admin',
         ]);

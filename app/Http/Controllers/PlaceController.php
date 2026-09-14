@@ -60,9 +60,11 @@ class PlaceController extends Controller
      */
     public function update(UpdatePlaceRequest $request, Place $place)
     {
-        //
+        
     }
-
+    public function updatePlaceForm(Place $place){
+        return view('adminPage', compact('place'));
+    }
     /**
      * Remove the specified resource from storage.
      */

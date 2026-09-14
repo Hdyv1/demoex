@@ -16,7 +16,7 @@
                             <div class="col-6">
                                 <label class="form-label" for="place">Выберите место проведения</label>
                                 <select class="form-select" name="place">
-                                    <option selected>Откройте меню выбора места</option>
+                                    <option selected value="">Откройте меню выбора места</option>
                                     @foreach ($places as $place)
                                     <option value="{{ $place->id }}">{{$place->title }}</option>
                                     @endforeach
@@ -27,7 +27,7 @@
                             </div>
                             <div class="col-6">
                                 <label class="form-label" for="date">Выберите дату проведения</label>
-                                <input type="date" class="form-control" name="date">
+                                <input type="date" class="form-control" name="date" value="{{ old('date') }}">
                                 @error('date')
                                 <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
