@@ -10,14 +10,14 @@
         <div class="container my-3">
             <div class="row">
                 <div class="col-lg-6 col-sm-12">
-                    <form action="{{ route('createPlace') }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ isset($place)?route('updatePlace', $place->id):route('createPlace') }}" method="post" enctype="multipart/form-data">
                         @csrf
-                        <h3 class="mb-3">Создание места</h3>
+                        <h3 class="mb-3">{{ isset($place)?'Редактирование':'Создание'}} места</h3>
                         <div class="container">
                             <div class="row">
                                 <div class="col-6">
                                     <label class="form-label" for="title">Название</label>
-                                    <input class="form-control" name="title" placeholder="Название места">
+                                    <input class="form-control" name="title" placeholder="Название места" value="{{ isset($place)?$place->title:old('title') }}">
                                     @error('title')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
@@ -31,10 +31,10 @@
                                 </div>
                                 <div class="col-6 mb-3">
                                     <label class="form-label" for="description">Описание</label>
-                                    <textarea class="form-control" name="description" placeholder="Краткое описание"></textarea>
+                                    <textarea class="form-control" name="description" placeholder="Краткое описание">{{ isset($place)?$place->description:old('description') }}</textarea>
                                 </div>
                                 <div class="col-12">
-                                    <button type="submit" class="btn btn-primary">Создать</button>
+                                    <button type="submit" class="btn btn-primary">{{ isset($place)?'Редактировать':'Создать'}} </button>
                                 </div>
                             </div>
                         </div>

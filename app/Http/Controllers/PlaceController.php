@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Place;
 use App\Http\Requests\StorePlaceRequest;
 use App\Http\Requests\UpdatePlaceRequest;
+use App\Models\Order;
 use Illuminate\Support\Facades\Storage;
 
 class PlaceController extends Controller
@@ -60,10 +61,13 @@ class PlaceController extends Controller
      */
     public function update(UpdatePlaceRequest $request, Place $place)
     {
-        
+        $place->title = $request->title;
+        $place->desription = 
     }
     public function updatePlaceForm(Place $place){
-        return view('adminPage', compact('place'));
+        $places = Place::all();
+        $orders = Order::all();
+        return view('adminPage', compact('place', 'places', 'orders'));
     }
     /**
      * Remove the specified resource from storage.
