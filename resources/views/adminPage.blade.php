@@ -33,7 +33,7 @@
                                     <label class="form-label" for="description">Описание</label>
                                     <textarea class="form-control" name="description" placeholder="Краткое описание">{{ isset($place)?$place->description:old('description') }}</textarea>
                                 </div>
-                                <div class="col-12">
+                                <div class="col-6">
                                     <button type="submit" class="btn btn-primary">{{ isset($place)?'Редактировать':'Создать'}} </button>
                                 </div>
                             </div>
@@ -55,13 +55,29 @@
                                             <span class="text-break mx-1">{{ $place->description }}</span>
                                         </div>
                                     </div>
-                                    <div class="mt-3">
-                                        <form action="{{ route('updatePlaceForm', $place->id) }}" method="get">
-                                            @csrf
-                                            <input type="text" hidden>
-                                            <button type="submit" class="btn btn-primary">Редактировать</button>
-                                        </form>
+                                    <div class="container mt-3">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div>
+                                                    <form action="{{ route('updatePlaceForm', $place->id) }}" method="get">
+                                                        @csrf
+                                                        <input type="text" hidden>
+                                                        <button type="submit" class="btn btn-primary">Редактировать</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div>
+                                                    <form action="{{ route('deletePlace', $place->id) }}" method="post">
+                                                        @csrf
+                                                        <input type="text" hidden>
+                                                        <button type="submit" class="btn btn-danger">Удалить</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
+
                                 </div>
                                 <div class="col-lg-6 col-sm-12">
                                     <img src="{{ asset($place->image) }}" alt="" width="250px">

@@ -62,9 +62,15 @@ class PlaceController extends Controller
     public function update(UpdatePlaceRequest $request, Place $place)
     {
         $place->title = $request->title;
-        $place->desription = 
+        $place->description = $request->description;
+        if ($request->image) {
+            $place->image = 'storage/images' . storage::disk('images')->put('/', $request->file('image'));
+        }
+        $place->save();
+        return redirect('admin');  
     }
-    public function updatePlaceForm(Place $place){
+    public function updatePlaceForm(Place $place)
+    {
         $places = Place::all();
         $orders = Order::all();
         return view('adminPage', compact('place', 'places', 'orders'));
@@ -74,6 +80,7 @@ class PlaceController extends Controller
      */
     public function destroy(Place $place)
     {
-        //
+        $place->delete();
+        return back();
     }
 }

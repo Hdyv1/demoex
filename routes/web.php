@@ -22,3 +22,4 @@ Route::post('/createPlace', [PlaceController::class, 'store'])->name('createPlac
 Route::post('/updatePlace/{place}', [PlaceController::class, 'update'])->name('updatePlace');
 Route::get('/updatePlaceForm/{place}', [PlaceController::class, 'updatePlaceForm'])->name('updatePlaceForm');
 Route::post('/createComment/{order}', [CommentController::class, 'store'])->name('createComment');
+Route::post('/deletePlace/{place}', [PlaceController::class, 'destroy'])->name('deletePlace');
