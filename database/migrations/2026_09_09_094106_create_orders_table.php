@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('place_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('date');
+            $table->string('name');
             $table->enum('status', ['new', 'created', 'done'])->default('new');
             $table->enum('payMethod', ['cash', 'card'])->default('cash');
             $table->timestamps();

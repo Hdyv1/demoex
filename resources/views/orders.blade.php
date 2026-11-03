@@ -12,8 +12,9 @@
             <div class="col-12 form-control mb-3 p-3">
 
                 <div class="order">
-                    <h5>Место - {{ $order->place->title }} ({{ $order->date }})</h5>
+                    <h5>Место - {{ $order->place->title }} ({{ date('d.m.Y',strtotime($order->date)) }})</h5>
                     <p>Способ Оплаты: {{ $order->payMethod=='card'?'СБП':'Наличные' }}</p>
+                    <p>Название мероприятия: {{ $order->name }}</p>
                     <p>
                         Статус заявки: <span class="badge {{ $order->status=='new'?'text-bg-primary':($order->status=='created'?'text-bg-secondary':'text-bg-success') }}">{{ $order->status=='new'?'Новое':($order->status=='created'?'Создано':'Завершено') }}</span>
                     </p>
@@ -34,7 +35,7 @@
                             @foreach ($order->comments as $comment)
                             <div class="form-control col-12 mb-3">
                                 <div class="comment-header d-flex align-items-center justify-content-between">
-                                    <h6>{{ $comment->user->fullname }}</h6> <span class="fw-light">{{$comment->created_at}}</span>
+                                    <h6>{{ $comment->user->fullname }}</h6> <span class="fw-light">{{date('d.m.Y H:i:s',strtotime($comment->created_at))}}</span>
                                 </div>
 
                                 {{ $comment->content }}

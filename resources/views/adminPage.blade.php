@@ -93,9 +93,17 @@
                     @foreach ($orders as $order)
                     <div class="order-form mb-3 form-control p-3">
                         <div class="order-user">
-                            <span>{{ $order->user->fullname }} ({{ $order->date }})</span>
+                            <span>{{ $order->user->fullname }} ({{ date('d.m.Y',strtotime($order->date)) }})</span>
                         </div>
-                        место: <span class="badge bg-secondary">{{ $order->place->title }}</span>
+                        <div class="d-flex flex-column">
+                            <div>
+                                место: <span class="badge bg-secondary">{{ $order->place->title }}</span>
+                            </div>
+                            <div>
+                                Название мероприятия: <span class="badge bg-primary">{{ $order->name }}</span>
+                            </div>
+                        </div>
+
                         <div class="order-status d-flex justify-content-between">
                             <form action="{{ route('updateOrder', $order->id) }}" method="post">
                                 @csrf
@@ -118,7 +126,7 @@
                             <h4>Комментарии</h4>
                             <div class="form-control fw-light">
                                 @foreach ($order->comments as $comment)
-                                <p>{{$comment->user->fullname.': '. $comment->content}} ({{$comment->created_at}})</p>
+                                <p>{{$comment->user->fullname.': '. $comment->content}} ({{date('d.m.Y H:i:s', strtotime($comment->created_at))}})</p>
                                 @endforeach
                             </div>
                         </div>

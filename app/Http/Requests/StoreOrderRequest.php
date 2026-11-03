@@ -25,6 +25,7 @@ class StoreOrderRequest extends FormRequest
         return [
             'place'=>'required',
             'date'=>'required',
+            'name'=>'required',
             'payMethod'=>'required',
         ];
     }

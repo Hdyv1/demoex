@@ -15,7 +15,7 @@
 
                             <div class="col-6">
                                 <label class="form-label" for="place">Выберите место проведения</label>
-                                <select class="form-select" name="place">
+                                <select class="form-select" name="place" id="place">
                                     <option selected value="">Откройте меню выбора места</option>
                                     @foreach ($places as $place)
                                     <option value="{{ $place->id }}">{{$place->title }}</option>
@@ -26,15 +26,22 @@
                                 @enderror
                             </div>
                             <div class="col-6">
+                                <label class="form-label" for="name">Напишите название мероприятия</label>
+                                <input type="text" class="form-control" name="name" id="name" placeholder="Мероприятие">
+                                @error('name')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="col-6">
                                 <label class="form-label" for="date">Выберите дату проведения</label>
-                                <input type="date" class="form-control" name="date" value="{{ old('date') }}">
+                                <input id="date" type="datetime-local" class="form-control" name="date" value="{{ old('date') }}">
                                 @error('date')
                                 <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="col-6 mb-3">
                                 <label class="form-label" for="payMethod">Способ оплаты</label>
-                                <select class="form-select" name="payMethod">
+                                <select class="form-select" name="payMethod" id="payMethod">
                                     <option selected value="cash">Наличные</option>
                                     <option value="card">СБП</option>
                                 </select>

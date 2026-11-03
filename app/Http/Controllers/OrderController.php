@@ -34,6 +34,7 @@ class OrderController extends Controller
         $order->place_id = $request->place;
         $order->date = $request->date;
         $order->payMethod = $request->payMethod;
+        $order->name = $request->name;
         $order->save();
         return redirect()->route('orders');
     }
